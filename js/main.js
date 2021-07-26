@@ -6,7 +6,7 @@
     
 //    3. La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
     
-    4.Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+//    4.Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
 
 */
@@ -49,13 +49,15 @@ function game(){
         let playerNum = prompt("Inserisci un numero da 1 a 100");
         if (!(playerNumbers.includes(playerNum))) {
             if ((bombs.includes(parseInt(playerNum)))){
-                console.log("Bomba!");
+                console.log("Bomba! " + "Punteggio: " + (index + 1));
                 break;
             }
             playerNumbers.push(playerNum);
             
         }
         console.log(playerNumbers);
+        console.log("Punteggio:" + (index + 1));
+    
     }
 }
 
