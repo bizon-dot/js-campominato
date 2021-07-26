@@ -75,8 +75,8 @@ function game(range) {
     let playerNumbers = [];
     let bombs = arrayBombs(range);
     console.log(bombs);
-    for (let index = 0; index < 84; index++) {
-        let playerNum = prompt("Inserisci un numero da 1 a 100");
+    for (let index = 0; index < (100 - bombs.length); index++) {
+        let playerNum = prompt("Inserisci un numero da 1 a " + range);
         if (!(playerNumbers.includes(playerNum))) {
             if ((bombs.includes(parseInt(playerNum)))) {
                 console.log("Bomba! " + "Punteggio: " + (index + 1));
