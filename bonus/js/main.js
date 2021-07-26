@@ -22,7 +22,6 @@ levelGame = parseInt(levelGame);
 switch (levelGame) {
     case (levelGame = 0):
         range = 100;
-        console.log(range);
         game(100);
         break;
 
@@ -55,7 +54,6 @@ function arrayBombs(range) {
     let bombs = [];
     while (bombs.length < 16) {
          let num = Math.floor(Math.random() * range) + 1;
-        // let num =  Math.random() * (range - 1) + 1;
         if (!(bombs.includes(num))) {
             bombs.push(num);
         }
