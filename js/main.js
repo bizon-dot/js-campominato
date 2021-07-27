@@ -22,17 +22,19 @@ levelGame = parseInt(levelGame);
 switch (levelGame) {
     case (levelGame = 0):
         num_max = 100;
-        DrawBoard(100);
-        // game(100);
+        DrawBoard(num_max);
+        game(num_max);
         break;
 
     case (levelGame = 1):
         num_max = 80;
+        DrawBoard(num_max);
         // game(num_max);
         break;
 
     case (levelGame = 2):
         num_max = 50;
+        DrawBoard(num_max);
         // game(num_max);
         break;
 
@@ -54,7 +56,7 @@ switch (levelGame) {
 function arrayBombs(num_max) {
     let bombs = [];
     while (bombs.length < 16) {
-         let num = Math.floor(Math.random() * num_max) + 1;
+        let num = Math.floor(Math.random() * num_max) + 1;
         if (!(bombs.includes(num))) {
             bombs.push(num);
         }
@@ -70,16 +72,16 @@ function arrayBombs(num_max) {
     
 */
 
-function DrawBoard(num_box){
-    for (let index = 1; index <= num_box; index++){
-       let box = `
+function DrawBoard(num_box) {
+    for (let index = 1; index <= num_box; index++) {
+        let box = `
        <div data-box="${index}" class="box"></div>
        `;
-       let templateBox = document.createElement('div');
-       templateBox.classList.add("square");
-       templateBox.innerHTML = box;
-       document.getElementById('board').appendChild(templateBox);
-       
+        let templateBox = document.createElement('div');
+        templateBox.classList.add("square");
+        templateBox.innerHTML = box;
+        document.getElementById('board').appendChild(templateBox);
+
     }
 
 }
@@ -97,18 +99,24 @@ function game(num_max) {
     let playerNumbers = [];
     let bombs = arrayBombs(num_max);
     console.log(bombs);
-    for (let index = 0; index < (100 - bombs.length); index++) {
-        let playerNum = prompt("Inserisci un numero da 1 a " + num_max);
-        if (!(playerNumbers.includes(playerNum))) {
-            if ((bombs.includes(parseInt(playerNum)))) {
-                console.log("Bomba! " + "Punteggio: " + (index + 1));
-                break;
+    
+    document.getElementById('board').addEventListener('click',
+        function (e) {
+            // console.log(e.target.dataset.box);
+            let element = document.querySelectorAll("[data-box='" + e.target.dataset.box + "']");
+            playerNum = (e.target.dataset["box"]);
+            if (!(playerNumbers.includes(playerNum))) {
+                if ((bombs.includes(parseInt(playerNum)))) {
+                    console.log("Bomba! " + "Punteggio: ");
+                    // break;
+                }
+                playerNumbers.push(playerNum);
+
             }
-            playerNumbers.push(playerNum);
+            console.log(playerNumbers);
+            console.log("Punteggio:" + playerNumbers.length);
 
         }
-        console.log(playerNumbers);
-        console.log("Punteggio:" + (index + 1));
 
-    }
-}
+
+    )
