@@ -106,7 +106,9 @@ function game(num_max) {
             let element = document.querySelectorAll("[data-box='" + e.target.dataset.box + "']");
             playerNum = (e.target.dataset["box"]);
             if (!(playerNumbers.includes(playerNum))) {
+                element[0].classList.add("green-bg");
                 if ((bombs.includes(parseInt(playerNum)))) {
+                    element[0].classList.add("red-bg");
                     console.log("Bomba! " + "Punteggio: ");
                     // break;
                 }
@@ -120,3 +122,4 @@ function game(num_max) {
 
 
     )
+    }

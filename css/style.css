@@ -12,6 +12,15 @@ clear: both;
 
 }
 
+/* Generali */
+
+.green-bg{
+    background-color: green;
+}
+
+.red-bg{
+    background-color: red;
+}
 /* Board */
 
 #board{
