@@ -21,18 +21,18 @@ let levelGame = prompt("Scegli il livello delal difficoltà: 0 / 1 / 2");
 levelGame = parseInt(levelGame);
 switch (levelGame) {
     case (levelGame = 0):
-        range = 100;
+        num_max = 100;
         game(100);
         break;
 
     case (levelGame = 1):
-        range = 80;
-        game(range);
+        num_max = 80;
+        game(num_max);
         break;
 
     case (levelGame = 2):
-        range = 50;
-        game(range);
+        num_max = 50;
+        game(num_max);
         break;
 
     default:
@@ -50,10 +50,10 @@ switch (levelGame) {
 
 
 
-function arrayBombs(range) {
+function arrayBombs(num_max) {
     let bombs = [];
     while (bombs.length < 16) {
-         let num = Math.floor(Math.random() * range) + 1;
+         let num = Math.floor(Math.random() * num_max) + 1;
         if (!(bombs.includes(num))) {
             bombs.push(num);
         }
@@ -71,12 +71,12 @@ function arrayBombs(range) {
     
 */
 
-function game(range) {
+function game(num_max) {
     let playerNumbers = [];
-    let bombs = arrayBombs(range);
+    let bombs = arrayBombs(num_max);
     console.log(bombs);
     for (let index = 0; index < (100 - bombs.length); index++) {
-        let playerNum = prompt("Inserisci un numero da 1 a " + range);
+        let playerNum = prompt("Inserisci un numero da 1 a " + num_max);
         if (!(playerNumbers.includes(playerNum))) {
             if ((bombs.includes(parseInt(playerNum)))) {
                 console.log("Bomba! " + "Punteggio: " + (index + 1));

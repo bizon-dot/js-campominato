@@ -1,0 +1,35 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+.clearfix::after {
+
+content: "";
+display: table;
+clear: both;
+
+}
+
+/* Board */
+
+#board{
+    width: 50vw;
+    height: 50vw;
+    margin: auto;
+    /* background-color: aliceblue; */
+}
+
+.square{
+    width: calc(50vw / 10);
+    height: calc(50vw / 10);
+    float: left;
+    background-color: aliceblue;
+}
+
+.box{
+    width: 100%;
+    height: 100%;
+    border: 1px solid grey;
+}
