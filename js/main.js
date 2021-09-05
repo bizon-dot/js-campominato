@@ -105,12 +105,7 @@ const playGame = (num_max) => {
         )
         click++;
     }
-
-
 }
-
-
-
 
 //Popolo la select 
 const selectLevel = document.getElementById("levels");
