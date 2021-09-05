@@ -17,32 +17,6 @@ BONUS
 
 */
 
-let levelGame = prompt("Scegli il livello della difficoltà: 0 / 1 / 2");
-levelGame = parseInt(levelGame);
-switch (levelGame) {
-    case (levelGame = 0):
-        num_max = 100;
-        DrawBoard(num_max);
-        game(num_max);
-        break;
-
-    case (levelGame = 1):
-        num_max = 80;
-        DrawBoard(num_max);
-        // game(num_max);
-        break;
-
-    case (levelGame = 2):
-        num_max = 50;
-        DrawBoard(num_max);
-        // game(num_max);
-        break;
-
-    default:
-        break;
-}
-
-
 /*  
     ========================================================================================================
         1.                              Genera un array contente 16 numeri casuali
@@ -52,8 +26,7 @@ switch (levelGame) {
 */
 
 
-
-function arrayBombs(num_max) {
+const arrayBombs = (num_max) => {
     let bombs = [];
     while (bombs.length < 16) {
         let num = Math.floor(Math.random() * num_max) + 1;
@@ -62,8 +35,9 @@ function arrayBombs(num_max) {
         }
     }
     return bombs;
-
 }
+
+
 
 /*  
     ========================================================================================================
@@ -72,7 +46,10 @@ function arrayBombs(num_max) {
     
 */
 
-function DrawBoard(num_box) {
+const drawBoard = (num_box) => {
+   
+    let board = document.getElementById('board');
+    board.innerHTML= ` `;
     for (let index = 1; index <= num_box; index++) {
         let box = `
        <div data-box="${index}" class="box"></div>
@@ -80,12 +57,9 @@ function DrawBoard(num_box) {
         let templateBox = document.createElement('div');
         templateBox.classList.add("square");
         templateBox.innerHTML = box;
-        document.getElementById('board').appendChild(templateBox);
-
+        board.appendChild(templateBox);
     }
-
 }
-
 /*  
     ========================================================================================================
         3.                              L'utente gioca inserendo 84 volte un input numerico 
@@ -95,31 +69,96 @@ function DrawBoard(num_box) {
     
 */
 
-function game(num_max) {
+const playGame = (num_max) => {
     let playerNumbers = [];
+    let click = 0;
+    let points = 0;
     let bombs = arrayBombs(num_max);
     console.log(bombs);
-    
-    document.getElementById('board').addEventListener('click',
-        function (e) {
-            // console.log(e.target.dataset.box);
-            let element = document.querySelectorAll("[data-box='" + e.target.dataset.box + "']");
-            playerNum = (e.target.dataset["box"]);
-            if (!(playerNumbers.includes(playerNum))) {
-                element[0].classList.add("green-bg");
-                if ((bombs.includes(parseInt(playerNum)))) {
-                    element[0].classList.add("red-bg");
-                    console.log("Bomba! " + "Punteggio: ");
-                    // break;
+    while (click < 84) {
+        document.getElementById('board').addEventListener('click',
+            function (e) {
+                let element = document.querySelectorAll("[data-box='" + e.target.dataset.box + "']");
+                playerNum = (e.target.dataset["box"]);
+                if (!(playerNumbers.includes(playerNum))) {
+                    element[0].classList.add("bg-green");
+                    points++;
+                    if ((bombs.includes(parseInt(playerNum)))) {
+                        element[0].classList.add("bg-red");
+                        points--;
+                        Swal.fire({
+                            title: `Bomba! Punteggio: ${points}`,
+                            showClass: {
+                              popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                              popup: 'animate__animated animate__fadeOutUp'
+                            }
+                          })
+                        click = 90;
+                    }
+                    playerNumbers.push(playerNum);
                 }
-                playerNumbers.push(playerNum);
-
+                console.log(playerNumbers);
+                console.log("Punteggio:" + points);
             }
-            console.log(playerNumbers);
-            console.log("Punteggio:" + playerNumbers.length);
-
-        }
-
-
-    )
+        )
+        click++;
     }
+
+
+}
+
+
+
+
+//Popolo la select 
+const selectLevel = document.getElementById("levels");
+const searchSelect = () => {
+    selectLevel.innerHTML = ` `;
+    const levels = ["Easy", "Normal", "Hard"];
+    levels.forEach((level) => {
+        console.log(level);
+        selectLevel.innerHTML += `
+             <option value="${level}">${level.toUpperCase()}</option>    
+        `
+    });
+}
+
+console.log(selectLevel);
+
+let levelGame = searchSelect();
+num_max = 100;
+drawBoard(num_max);
+playGame(num_max);
+
+document.getElementById("levels").addEventListener('change', function () {
+
+    let level = this.value.toLowerCase();
+    console.log(level);
+    switch (level) {
+        case (level = "easy"):
+            num_max = 100;
+            drawBoard(num_max);
+            playGame(num_max);
+            break;
+
+        case (level = "normal"):
+            num_max = 80;
+            drawBoard(num_max);
+            playGame(num_max);
+            break;
+
+        case (level = "hard"):
+            num_max = 50;
+            drawBoard(num_max);
+            playGame(num_max);
+            break;
+
+        default:
+            num_max = 100;
+            drawBoard(num_max);
+            playGame(num_max);
+            break;
+    }
+});
