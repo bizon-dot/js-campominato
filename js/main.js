@@ -47,9 +47,9 @@ const arrayBombs = (num_max) => {
 */
 
 const drawBoard = (num_box) => {
-   
+
     let board = document.getElementById('board');
-    board.innerHTML= ` `;
+    board.innerHTML = ` `;
     for (let index = 1; index <= num_box; index++) {
         let box = `
        <div data-box="${index}" class="box"></div>
@@ -87,14 +87,27 @@ const playGame = (num_max) => {
                         element[0].classList.add("bg-red");
                         points--;
                         Swal.fire({
-                            title: `Bomba! Punteggio: ${points}`,
+                            title: 'Altro giro?',
+                            text: `Bomba! Punteggio: ${points}`,
                             showClass: {
-                              popup: 'animate__animated animate__fadeInDown'
-                            },
-                            hideClass: {
-                              popup: 'animate__animated animate__fadeOutUp'
+                                popup: 'animate__animated animate__fadeInDown'
+                              },
+                              hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                              },
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si, certo'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                num_max = 100;
+                                drawBoard(num_max);
+                                playGame(num_max);
+
                             }
-                          })
+                        })
                         click = 90;
                     }
                     playerNumbers.push(playerNum);
