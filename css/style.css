@@ -100,5 +100,6 @@ clear: both;
         width: calc(50vw / 5);
         height: calc(50vw / 5);
         float: left;
+       
     }
 }
