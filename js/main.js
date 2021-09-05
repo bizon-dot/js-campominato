@@ -121,7 +121,7 @@ const playGame = (num_max) => {
                                     xmlhttp.onload = function () {
                                         document.getElementById("txtHint").innerHTML = this.responseText;
                                     }
-                                    xmlhttp.open("GET", "saveresult.php?nick=" + nick + "?points" + points);
+                                    xmlhttp.open("GET", "saveresults.php?nick=" + nick + "?points" + points);
                                     xmlhttp.send();
                                 }
                             }
