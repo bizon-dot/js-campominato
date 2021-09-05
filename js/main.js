@@ -47,6 +47,7 @@ const arrayBombs = (num_max) => {
 */
 
 const drawBoard = (num_box) => {
+    console.log(num_box)
     let board = document.getElementById('board');
     board.innerHTML = ` `;
     for (let index = 1; index <= num_box; index++) {
@@ -105,7 +106,24 @@ const playGame = (num_max) => {
                                 drawBoard(num_max);
                                 playGame(num_max);
                             } else {
-                                window.location.replace("https://github.com/bizon-dot/js-campominato");
+                                // window.location.replace("https://github.com/bizon-dot/js-campominato");
+                                const {
+                                    value: nick
+                                } = Swal.fire({
+                                    title: 'Inserici il nick per registrare il punteggio',
+                                    input: 'text',
+                                    inputLabel: 'Your nick',
+                                    inputPlaceholder: 'Enter your nick'
+                                })
+
+                                if (nick) {
+                                    const xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onload = function () {
+                                        document.getElementById("txtHint").innerHTML = this.responseText;
+                                    }
+                                    xmlhttp.open("GET", "saveresult.php?nick=" + nick + "?points" + points);
+                                    xmlhttp.send();
+                                }
                             }
                         })
                         click = 90;

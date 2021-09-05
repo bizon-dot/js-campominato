@@ -91,15 +91,20 @@ clear: both;
     border: 1px solid grey;
 }
 
-@media (min-width: 421px) and (max-width: 768px) {
-    
-}
 
-@media screen and (max-width: 420px) {
-    .square{
-        width: calc(50vw / 5);
-        height: calc(50vw / 5);
-        float: left;
-       
-    }
-}
+/*  */
+/*  */
+/* @media only screen and (min-width: 600px) { */
+    /* #board{ */
+        /* width: 100vw; */
+        /* height: 100vw; */
+        /* margin:0 auto; */
+       /*  */
+    /* } */
+    /* .square{ */
+        /* width: calc(50vw / 5); */
+        /* height: calc(50vw / 5); */
+        /* float: left; */
+        /* background-color: aliceblue; */
+    /* } */
+/* }  */
