@@ -47,7 +47,6 @@ const arrayBombs = (num_max) => {
 */
 
 const drawBoard = (num_box) => {
-
     let board = document.getElementById('board');
     board.innerHTML = ` `;
     for (let index = 1; index <= num_box; index++) {
@@ -87,15 +86,15 @@ const playGame = (num_max) => {
                         element[0].classList.add("bg-red");
                         points--;
                         Swal.fire({
-                            title: 'Altro giro?',
-                            text: `Bomba! Punteggio: ${points}`,
+                            title: `Bomba! Punteggio: ${points}`,
+                            text: 'Altro giro?',
                             showClass: {
                                 popup: 'animate__animated animate__fadeInDown'
-                              },
-                              hideClass: {
+                            },
+                            hideClass: {
                                 popup: 'animate__animated animate__fadeOutUp'
-                              },
-                            icon: 'warning',
+                            },
+                            icon: 'question',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -105,7 +104,8 @@ const playGame = (num_max) => {
                                 num_max = 100;
                                 drawBoard(num_max);
                                 playGame(num_max);
-
+                            } else {
+                                window.location.replace("https://github.com/bizon-dot/js-campominato");
                             }
                         })
                         click = 90;
