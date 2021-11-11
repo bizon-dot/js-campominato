@@ -1,2 +1,4 @@
 # js-campominato
- [Live version](http://80.211.171.14/minefield/) 
+ 
+
+ ![screen](https://github.com/bizon-dot/js-campominato/blob/master/capture/campo%20minato.png)
